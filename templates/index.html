@@ -1,0 +1,33 @@
+<section id="projects" class="section">
+  <h2>Projetos</h2>
+  <p class="section-subtitle">
+    Alguns projetos que desenvolvi usando Python, SQL e JavaScript.
+  </p>
+  <div class="projects-grid">
+    {% for project in projects %}
+      <article class="project-card">
+        <h3>{{ project.title }}</h3>
+        <p class="project-desc">{{ project.description }}</p>
+
+        <div class="project-tags">
+          {% for tag in project.tags %}
+            <span class="tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+
+        <div class="project-links">
+          {% if project.code_url %}
+            <a href="{{ project.code_url }}" target="_blank" class="btn secondary">
+              Código
+            </a>
+          {% endif %}
+          {% if project.demo_url %}
+            <a href="{{ project.demo_url }}" target="_blank" class="btn primary">
+              Demo
+            </a>
+          {% endif %}
+        </div>
+      </article>
+    {% endfor %}
+  </div>
+</section>
