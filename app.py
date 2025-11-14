@@ -2,16 +2,22 @@ from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+import os
 
 app = FastAPI()
 
+# Caminho absoluto da pasta atual
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
 # pasta de arquivos estáticos (css, js, imagens)
-app.mount("/static", StaticFiles(directory="static"), name="static")
+static_path = os.path.join(BASE_DIR, "static")
+app.mount("/static", StaticFiles(directory=static_path), name="static")
 
 # pasta de templates (html)
-templates = Jinja2Templates(directory="templates")
+templates_path = os.path.join(BASE_DIR, "templates")
+templates = Jinja2Templates(directory=templates_path)
 
-# Exemplo de dados de projetos (você pode carregar de um banco depois)
+# Seus projetos
 PROJECTS = [
     {
         "title": "API de Gestão de Tarefas",
